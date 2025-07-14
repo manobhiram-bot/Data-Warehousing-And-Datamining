@@ -1,0 +1,23 @@
+# Data
+lower <- c(1, 5, 15, 20, 50, 80)
+upper <- c(5, 15, 20, 50, 80, 110)
+freq <- c(200, 450, 300, 1500, 700, 44)
+
+# Cumulative frequency
+cf <- cumsum(freq)
+N <- sum(freq)
+
+# Find median class
+median_class <- which(cf >= N/2)[1]
+
+# Values for formula
+L <- lower[median_class]
+F <- ifelse(median_class == 1, 0, cf[median_class - 1])
+f <- freq[median_class]
+h <- upper[median_class] - lower[median_class]
+
+# Median formula
+median <- L + ((N/2 - F) / f) * h
+
+# Output
+print(median)
